@@ -6,8 +6,7 @@ export const styles = {
         backgroundColor: COLORS.white,
         flex: 1,
         justifyContent: "space-between",
-        // padding: 12,
-        paddingTop:50
+        padding: 12,       
     },
 
     text: {
