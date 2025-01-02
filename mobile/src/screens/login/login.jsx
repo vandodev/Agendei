@@ -1,5 +1,5 @@
 import { Image, Text, TextInput, View, TouchableOpacity } from "react-native";
-import logo from "../../assets/logo.png"
+import icon from "../../constants/icon.js"
 import { styles } from "./login.style";
 import Button from "../../components/button/button.jsx"
 
@@ -7,7 +7,7 @@ import Button from "../../components/button/button.jsx"
 function Login() {
     return <View style={styles.container}>
         <View style={styles.containerLogo}>
-            <Image source={logo} style={styles.logo} />
+            <Image source={icon.logo} style={styles.logo} />
         </View>
 
         <View >
