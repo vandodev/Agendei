@@ -1,8 +1,8 @@
-import AbaCalendar from './src/screens/abacalendar/abacalendar.jsx';
+import AbaProfile from './src/screens/abaprofile/abaprofile.jsx';
 
 export default function App() {
   return (
-    <AbaCalendar/>
+    <AbaProfile/>
   );
 }
 
