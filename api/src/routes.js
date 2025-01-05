@@ -1,9 +1,8 @@
 import { Router } from "express";
+import controllerDoctor from "./controllers/controller.doctor.js";
 
 const routes = Router();
 
-routes.get("/doctors",(req,res) => {
-    res.status(200).send("Lista dos médicos");
-});
+routes.get("/doctors", controllerDoctor.Listar);
 
 export default routes;
