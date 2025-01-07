@@ -6,4 +6,13 @@ import serviceDoctors from "../services/service.doctors.js";
     res.json(doctors);
 }
 
-export default {Listar}
+async function Inserir(req, res) {
+    const { name, specialty, icon } = req.body;
+
+    const doctor = await serviceDoctors.Inserir(name, specialty, icon);
+
+    res.status(201).json(doctor);
+  }
+
+
+export default {Listar, Inserir}

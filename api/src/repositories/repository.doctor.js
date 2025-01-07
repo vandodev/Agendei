@@ -16,4 +16,15 @@ async function Listar(name){
     return doctors;
 }
 
-export default {Listar};
+async function Inserir(name, specialty, icon) {
+       
+    let sql = `INSERT INTO doctors (name, specialty, icon) VALUES (?, ?, ?)
+      returning id_doctor` 
+    ;
+
+    const doctor = await query(sql,[name, specialty, icon])
+    
+    return doctor[0];
+  }
+
+export default {Listar, Inserir};
