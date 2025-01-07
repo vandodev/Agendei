@@ -8,6 +8,11 @@ import repositoryDoctor from "../repositories/repository.doctor.js";
 async function Inserir(name, specialty, icon) {
     const doctor = await repositoryDoctor.Inserir(name, specialty, icon);
     return doctor;
-  }
+}
 
-export default {Listar, Inserir};
+async function Editar(id_doctor, name, specialty, icon) {
+    const doctor = await repositoryDoctor.Editar(id_doctor, name, specialty, icon);
+    return doctor;
+}
+
+export default {Listar, Inserir, Editar};
