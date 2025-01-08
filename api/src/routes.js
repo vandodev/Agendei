@@ -12,5 +12,6 @@ routes.delete("/doctors/:id_doctor", controllerDoctor.Excluir);
 
 //Users
 routes.post("/users/register", controllerUser.Inserir);
+routes.post("/users/login", controllerUser.Login);
 
 export default routes;

@@ -11,4 +11,15 @@ async function Inserir(name, email, password) {
     return user[0];
 }
 
-export default { Inserir } ;
+async function getByEmail(email) {
+  
+  let sql = `SELECT * FROM users WHERE email = ? `;
+  const user = await query(sql,[email])
+
+  if(user.legth == 0)
+    return [];
+  else
+    return user[0];
+}
+
+export default { Inserir, getByEmail } ;
