@@ -15,4 +15,9 @@ async function Editar(id_doctor, name, specialty, icon) {
     return doctor;
 }
 
-export default {Listar, Inserir, Editar};
+async function Excluir(id_doctor) {
+    const doctor = await repositoryDoctor.Exluir(id_doctor);
+    return doctor;
+  }
+
+export default {Listar, Inserir, Editar, Excluir};

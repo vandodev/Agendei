@@ -40,4 +40,11 @@ async function Editar(id_doctor, name, specialty, icon) {
     return { id_doctor };
 }
 
-export default {Listar, Inserir, Editar};
+async function Exluir(id_doctor) {
+    
+    let sql = `DELETE FROM doctors WHERE id_doctor = ?`;
+    await query(sql, [id_doctor]); 
+    return { id_doctor };
+  }
+
+export default {Listar, Inserir, Editar, Exluir} ;
