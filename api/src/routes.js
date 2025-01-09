@@ -11,6 +11,8 @@ routes.post("/doctors",jwt.validateToken, controllerDoctor.Inserir);
 routes.put("/doctors/:id_doctor",jwt.validateToken, controllerDoctor.Editar);
 routes.delete("/doctors/:id_doctor",jwt.validateToken, controllerDoctor.Excluir);
 
+routes.get("/doctors/:id_doctor/services",jwt.validateToken, controllerDoctor.ListarServicos);
+
 //Users
 routes.post("/users/register", controllerUser.Inserir);
 routes.post("/users/login", controllerUser.Login);

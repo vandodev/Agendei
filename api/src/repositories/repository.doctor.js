@@ -45,6 +45,18 @@ async function Exluir(id_doctor) {
     let sql = `DELETE FROM doctors WHERE id_doctor = ?`;
     await query(sql, [id_doctor]); 
     return { id_doctor };
+}
+
+async function listarServicos(id_doctor) {
+
+    let sql = `SELECT s.id_service, s.description, ds.price FROM SERVICES s
+        JOIN doctors_services ds ON ds.id_service = s.id_service
+        WHERE ds.id_doctor = ?
+    `;
+
+    const serv = await query(sql,[id_doctor])
+
+    return serv;
   }
 
-export default {Listar, Inserir, Editar, Exluir} ;
+export default {Listar, Inserir, Editar, Exluir, listarServicos} ;
