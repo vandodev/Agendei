@@ -25,6 +25,11 @@ async function Login(email, password) {
             return[];
         }
     }
-  }
+}
 
-export default {Inserir, Login};
+ async function Profile(id_user){
+    const user = await repositoryUser.Profile(id_user);    
+    return user;
+}
+
+export default {Inserir, Login, Profile};

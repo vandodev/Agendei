@@ -16,7 +16,12 @@ async function Login(req, res) {
     else {
       res.json(user);
     }
-  }
+}
 
+ async function Profile(req, res){
+    const id_user = req.id_user
+    const user = await serviceUser.Profile(id_user);
+    res.json(user);
+}
 
-export default {Inserir, Login}
+export default {Inserir, Login, Profile}

@@ -57,6 +57,6 @@ async function listarServicos(id_doctor) {
     const serv = await query(sql,[id_doctor])
 
     return serv;
-  }
+}
 
 export default {Listar, Inserir, Editar, Exluir, listarServicos} ;
