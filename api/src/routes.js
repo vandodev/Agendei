@@ -22,5 +22,6 @@ routes.get("/users/profile", jwt.validateToken, controllerUser.Profile);
 //Apointments
 routes.get("/appointments",jwt.validateToken, controllerAppointment.ListarByUser);
 routes.post("/appointments",jwt.validateToken, controllerAppointment.Inserir);
+routes.delete("/appointments/:id_appointment", jwt.validateToken, controllerAppointment.Excluir);
 
 export default routes;

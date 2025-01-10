@@ -10,4 +10,9 @@ async function Inserir(id_user, id_doctor, id_service, booking_date, booking_hou
     return appointment;
 }
 
-export default {Listar, Inserir}
+async function Excluir(id_user, id_appointment) {
+    const appointment = await repoAppointment.Excluir(id_user, id_appointment);
+    return appointment;
+}
+
+export default {Listar, Inserir, Excluir}
