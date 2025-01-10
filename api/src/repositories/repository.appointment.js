@@ -19,4 +19,15 @@ async function Listar(id_user){
     return appointments;
 }
 
-export default {Listar} ;
+async function Inserir(id_user, id_doctor, id_service, booking_date, booking_hour) {
+       
+    let sql = `INSERT INTO appointments (id_user, id_doctor, id_service, booking_date, booking_hour) 
+        VALUES (?, ?, ?, ?, ?) returning id_appointment` 
+    ;
+
+    const appointment = await query(sql,[id_user, id_doctor, id_service, booking_date, booking_hour])
+    // console.log("Params: repository", [id_user, id_doctor, id_service, booking_date, booking_hour]);
+    return appointment[0];
+}
+
+export default {Listar, Inserir} ;
