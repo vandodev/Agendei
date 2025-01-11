@@ -1,8 +1,12 @@
-import Schedule from './src/screens/schedule/schedule.jsx';
+import Routes from './src/routes/routes.js';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function App() {
+function App() {  
   return (
-    <Schedule/>
-  );
+    <NavigationContainer>
+      <Routes/>
+    </NavigationContainer>
+  )
 }
 
+export default App;

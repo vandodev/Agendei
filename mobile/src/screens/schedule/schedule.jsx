@@ -9,7 +9,8 @@ import Button from "../../components/button/button.jsx";
 LocaleConfig.locales["pt-br"] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
 
-function Schedule() {
+function Schedule(props) {
+  const { id_doctor, id_service } = props.route.params;
   const [data, setData] = useState(new Date().toISOString().slice(0,10));
   const [horario, setHorario] = useState("9:00");
    

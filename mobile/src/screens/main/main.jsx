@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import icon from '../../constants/icon';
 import { Image } from 'react-native';
@@ -13,7 +13,6 @@ const Tab = createBottomTabNavigator();
 
 function Main(){
     return (
-      <NavigationContainer>
         <Tab.Navigator>
             <Tab.Screen 
                 name='home' 
@@ -79,7 +78,6 @@ function Main(){
                 }}
             />
         </Tab.Navigator>
-      </NavigationContainer>
     );
 }
 
