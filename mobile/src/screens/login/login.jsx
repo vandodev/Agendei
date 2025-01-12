@@ -1,14 +1,15 @@
-import {useState } from "react";
+import { useContext, useState } from "react";
 import { Image, Text,Alert, TextInput, View, TouchableOpacity } from "react-native";
 import icon from "../../constants/icon.js"
 import { styles } from "./login.style";
 import Button from "../../components/button/button.jsx"
 import api from "../../constants/api.js";
+import { authContext } from "../../contexts/auth.js";
 
 function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [user, setUser] = useState("");
+    const { setUser } = useContext(authContext);
 
     async function handleLogin(props) {
         try {
