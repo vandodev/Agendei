@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Alert, Text, View } from "react-native"
 import { styles } from "./abaprofile.style";
 import Button from "../../components/button/button.jsx";
 import api from "../../constants/api";
+import { authContext } from "../../contexts/auth";
 
 function AbaProfile() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const { setUser } = useContext(authContext);
 
   async function loadProfile() {
     try {
@@ -24,6 +26,11 @@ function AbaProfile() {
         Alert.alert("Ocorreu um erro, tente novamente mais tarde");
       console.log(error);
     }
+  }
+
+  function handleLogout() {
+    api.defaults.headers.common['Authorization'] = "";
+    setUser({});
   }
 
   useEffect(() => {
@@ -44,6 +51,7 @@ function AbaProfile() {
       <View style={styles.item}>
         <Button 
           text="Desconectar" 
+          onPress={handleLogout}
         />
       </View>
     </View>  
