@@ -3,8 +3,7 @@ import {styles} from "./appointment.style.js";
 import Button from "../button/button.jsx";
 import icon from "../../constants/icon.js"
 
-function Appointment({ service, doctor, specialty, booking_date, booking_hour }) {
-    
+function Appointment({ service, doctor, specialty, booking_date, booking_hour, onPress, id_appointment}) {
     const formatDate = (vdata, vhora) => new Date(`${vdata}T${vhora}`).toLocaleDateString('pt-BR');
 
     return <View style={styles.appointment}>
@@ -28,7 +27,11 @@ function Appointment({ service, doctor, specialty, booking_date, booking_hour })
             </View>
 
             <View style={styles.containerButton}>
-                <Button text="Cancelar Reserva" theme="danger"/>
+                <Button 
+                    text="Cancelar Reserva"
+                    theme="danger"
+                    onPress={() => onPress(id_appointment)} 
+                 />
             </View>
         </View>
 
