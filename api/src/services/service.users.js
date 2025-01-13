@@ -10,11 +10,15 @@ async function Inserir(name, email, password) {
 }
 
 async function Login(email, password) {
-
+    
+    // Obtém o usuário pelo email
     const user = await repositoryUser.getByEmail(email);
 
-    if(user.legth == 0)
-        return [];
+    // Verifica se o usuário é nulo, indefinido ou vazio
+    if (!user || user.length === 0) {
+        return []; // Retorna um array vazio se o usuário não for encontrado
+    }
+
     else{
         if(await bcrypt.compare(password, user.password)){
             delete user.password;
