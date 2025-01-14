@@ -1,6 +1,7 @@
 import "./login.css";
 import logo from "../../assets/logo.png";
-import fundo from "../../assets/fundo.png"
+import fundo from "../../assets/fundo.png";
+import { Link } from "react-router-dom";
 
 function Login() {
     return ( 
@@ -21,7 +22,7 @@ function Login() {
                     </div>
                     <div>
                         <span className="me-1">Não tenho uma conta.</span>
-                        <a href="#">Criar agora!</a>
+                        <Link to="/register">Criar agora!</Link>
                     </div>
                 </form>
             </div>

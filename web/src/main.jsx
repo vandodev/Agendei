@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import Register from './pages/register/register';
+import Rotas from './rotas';
 import "./styles/global.css";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Register/>
+    <Rotas />
   </StrictMode>,
 )
