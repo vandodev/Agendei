@@ -31,6 +31,7 @@ function Register() {
                 localStorage.setItem("sessionId", response.data.id_user);
                 localStorage.setItem("sessionEmail", email);
                 localStorage.setItem("sessionName", name);
+                api.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
                 navigate("/appointments");
             } else {
                 setMsg("Erro ao fazer login, tente novamente mais tarde!");
