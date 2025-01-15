@@ -13,7 +13,7 @@ function Appointment(props) {
                         <i class="bi bi-pencil-square"></i>
                     </button>
                 </div>
-                <button className="btn btn-sm btn-danger">
+                <button  onClick={() => props.ClickDelete(props.id_appointment)} className="btn btn-sm btn-danger">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>

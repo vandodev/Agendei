@@ -7,10 +7,11 @@ import "./appointments.css";
 function Appointments() {
 
     function ClickEdit(id_appointment) {
-        console.log(`Editar: ${id_appointment}`);
+        console.log(`Editar: ` + id_appointment);
     }
+
     function ClickDelete(id_appointment) {
-        console.log(`Deletar: ${id_appointment}`);
+        console.log(`Deletar: ` + id_appointment);
     }
 
     return (
@@ -64,8 +65,8 @@ function Appointments() {
                                 booking_date={ap.booking_date}
                                 booking_hour={ap.booking_hour}
                                 price={ap.price}
-                                clickEdit={ClickEdit}
-                                clickDelete={ClickDelete}
+                                ClickEdit={ClickEdit}
+                                ClickDelete={ClickDelete}
                             />
                         })}
                     </tbody>
