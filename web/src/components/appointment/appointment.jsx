@@ -10,11 +10,11 @@ function Appointment(props) {
             <td className="text-end">
                 <div className="d-inline me-3">
                     <button onClick={() => props.ClickEdit(props.id_appointment)} className="btn btn-sm btn-primary">
-                        <i class="bi bi-pencil-square"></i>
+                        <i className="bi bi-pencil-square"></i>
                     </button>
                 </div>
                 <button  onClick={() => props.ClickDelete(props.id_appointment)} className="btn btn-sm btn-danger">
-                    <i class="bi bi-trash"></i>
+                    <i className="bi bi-trash"></i>
                 </button>
             </td>
         </tr>
