@@ -18,6 +18,8 @@ routes.get("/doctors/:id_doctor/services",jwt.validateToken, controllerDoctor.Li
 routes.post("/users/register", controllerUser.Inserir);
 routes.post("/users/login", controllerUser.Login);
 routes.get("/users/profile", jwt.validateToken, controllerUser.Profile);
+routes.post("/admin/register", controllerUser.InserirAdmin);
+routes.post("/admin/login", controllerUser.LoginAdmin);
 
 //Apointments
 routes.get("/appointments",jwt.validateToken, controllerAppointment.ListarByUser);
