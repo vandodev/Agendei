@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import { Link, useNavigate } from "react-router-dom";
-import { doctors } from "../../constants/data";
 import Appointment from "../../components/appointment/appointment";
 import "./appointments.css";
 import api from "../../constants/api.js";
 
 function Appointments() {
     const [appointments, setAppointments] = useState([]);
+    const [doctors, setDoctors] = useState([]);
+    const [idDoctor, setIdDoctor] = useState("");
     const navigate = useNavigate();
 
     function ClickEdit(id_appointment) {
@@ -20,7 +21,11 @@ function Appointments() {
 
     async function LoadAppointments() {
         try {
-            const response = await api.get("admin/appointments");
+            const response = await api.get("admin/appointments", {
+                params: {
+                    id_doctor: idDoctor
+                }
+            });
             if (response.data) {
                 setAppointments(response.data);
             }
@@ -33,8 +38,28 @@ function Appointments() {
         }
     }
 
+    async function LoadDoctors() {
+        try {
+            const response = await api.get("/doctors");
+            if (response.data) {
+                setDoctors(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                alert(error.response?.data.error);
+            } else {
+                alert("Erro ao listar médicos.");
+            }
+        }
+    }
+
+    function ChangeDoctor(e) {
+        setIdDoctor(e.target.value);
+    }
+
     useEffect(() => {
         LoadAppointments();
+        LoadDoctors();
     }, []);
 
     return (
@@ -52,7 +77,7 @@ function Appointments() {
                     <span className="m-2">Até</span>
                     <input type="date" id="endDate" className="form-control" />
                     <div className="form-control ms-3 me-3">
-                        <select name="doctor" id="doctor">
+                    <select name="doctor" id="doctor" value={idDoctor} onChange={ChangeDoctor}>
                             <option value="">Todos os médicos</option>
                             {
                                 doctors.map((doc) => {
@@ -61,7 +86,7 @@ function Appointments() {
                             }
                         </select>
                     </div>
-                    <button className="btn btn-primary">Filtrar</button>
+                    <button onClick={LoadAppointments} type="button" className="btn btn-primary">Filtrar</button>
                 </div>
             </div>
             <div>
