@@ -1,11 +1,13 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import { Link, useNavigate } from "react-router-dom";
-import { doctors, appointments } from "../../constants/data";
+import { doctors } from "../../constants/data";
 import Appointment from "../../components/appointment/appointment";
 import "./appointments.css";
+import api from "../../constants/api.js";
 
 function Appointments() {
-
+    const [appointments, setAppointments] = useState([]);
     const navigate = useNavigate();
 
     function ClickEdit(id_appointment) {
@@ -15,6 +17,25 @@ function Appointments() {
     function ClickDelete(id_appointment) {
         console.log(`Deletar: ` + id_appointment);
     }
+
+    async function LoadAppointments() {
+        try {
+            const response = await api.get("admin/appointments");
+            if (response.data) {
+                setAppointments(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                alert(error.response?.data.error);
+            } else {
+                alert("Erro ao fazer login, tente novamente mais tarde!");
+            }
+        }
+    }
+
+    useEffect(() => {
+        LoadAppointments();
+    }, []);
 
     return (
         <div className="container-fluid mt-page">
