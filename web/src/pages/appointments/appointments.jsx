@@ -9,6 +9,10 @@ function Appointments() {
     const [appointments, setAppointments] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [idDoctor, setIdDoctor] = useState("");
+
+    const [dtStart, setDtStart] = useState("");
+    const [dtEnd, setDtEnd] = useState("");
+
     const navigate = useNavigate();
 
     function ClickEdit(id_appointment) {
@@ -23,9 +27,12 @@ function Appointments() {
         try {
             const response = await api.get("admin/appointments", {
                 params: {
-                    id_doctor: idDoctor
+                    id_doctor: idDoctor,
+                    dt_start: dtStart,
+                    dt_end: dtEnd
                 }
             });
+        
             if (response.data) {
                 setAppointments(response.data);
             }
@@ -73,15 +80,17 @@ function Appointments() {
                     </Link>
                 </div>
                 <div className="d-flex justify-content-end align-items-center">
-                    <input type="date" id="startDate" className="form-control" />
+
+                    <input type="date" id="startDate" className="form-control" onChange={(e) => setDtStart(e.target.value)}/>
                     <span className="m-2">Até</span>
-                    <input type="date" id="endDate" className="form-control" />
+                    <input type="date" id="endDate" className="form-control" onChange={(e) => setDtEnd(e.target.value)}/>
                     <div className="form-control ms-3 me-3">
+
                     <select name="doctor" id="doctor" value={idDoctor} onChange={ChangeDoctor}>
-                            <option value="">Todos os médicos</option>
+                            <option value="0">Todos os médicos</option>
                             {
                                 doctors.map((doc) => {
-                                    return <option value={doc.id_doctor}>{doc.name}</option>
+                                    return <option key={doc.id_doctor} value={doc.id_doctor}>{doc.name}</option>
                                 })
                             }
                         </select>
