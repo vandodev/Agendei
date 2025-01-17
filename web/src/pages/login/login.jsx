@@ -35,6 +35,9 @@ function Login() {
         } catch (error) {
             if (error.response?.data.error) {
                 setMsg(error.response?.data.error);
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
             } else {
                 setMsg("Erro ao fazer login, tente novamente mais tarde!");
             }
@@ -55,6 +58,7 @@ function Login() {
                             placeholder="E-mail"
                             className="form-control"
                             onChange={(e) => setEmail(e.target.value)}
+                            value={email}
                         />
                     </div>
                     <div className="mt-2">
@@ -63,6 +67,7 @@ function Login() {
                             placeholder="Senha"
                             className="form-control"
                             onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                         />
                     </div>
                     <div className="mt-3 mb-5">

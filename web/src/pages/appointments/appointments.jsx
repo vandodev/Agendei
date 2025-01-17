@@ -38,7 +38,9 @@ function Appointments() {
             }
         } catch (error) {
             if (error.response?.data.error) {
-                alert(error.response?.data.error);
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
             } else {
                 alert("Erro ao fazer login, tente novamente mais tarde!");
             }
@@ -53,7 +55,9 @@ function Appointments() {
             }
         } catch (error) {
             if (error.response?.data.error) {
-                alert(error.response?.data.error);
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
             } else {
                 alert("Erro ao listar médicos.");
             }
