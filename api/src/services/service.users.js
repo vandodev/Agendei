@@ -31,7 +31,7 @@ async function Login(email, password) {
     }
 }
 
- async function Profile(id_user){
+async function Profile(id_user){
     const user = await repositoryUser.Profile(id_user);    
     return user;
 }
@@ -65,4 +65,9 @@ async function LoginAdmin(email, password) {
     }
 }
 
-export default {Inserir, Login, Profile, LoginAdmin, InserirAdmin};
+async function Listar(){
+    const users = await repositoryUser.Listar();    
+    return users;
+}
+
+export default {Inserir, Login, Profile, LoginAdmin, InserirAdmin, Listar};

@@ -23,6 +23,7 @@ routes.get("/users/profile", jwt.validateToken, controllerUser.Profile);
 routes.post("/admin/register", controllerUser.InserirAdmin);
 routes.post("/admin/login", controllerUser.LoginAdmin);
 routes.get("/admin/appointments",jwt.validateToken, controllerAppointment.Listar);
+routes.get("/admin/users",jwt.validateToken, controllerUser.Listar);
 
 //Apointments
 routes.get("/appointments",jwt.validateToken, controllerAppointment.ListarByUser);

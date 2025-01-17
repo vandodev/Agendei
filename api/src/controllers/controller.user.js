@@ -42,4 +42,9 @@ async function LoginAdmin(req, res) {
   }
 }
 
-export default {Inserir, Login, Profile, InserirAdmin, LoginAdmin}
+async function Listar(req, res) { 
+  const users = await serviceUser.Listar();  
+    res.status(200).json(users);
+}
+
+export default {Inserir, Login, Profile, InserirAdmin, LoginAdmin, Listar}
