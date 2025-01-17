@@ -32,4 +32,10 @@ async function Listar(req, res) {
     res.status(200).json(appointments);
 }
 
-export default {ListarByUser, Inserir, Excluir, Listar}
+async function ListarId(req, res) {
+    const id_appointment = req.params.id_appointment;
+    const appointments = await serviceAppointment.ListarId(id_appointment);
+    res.status(200).json(appointments);
+}
+
+export default {ListarByUser, Inserir, Excluir, Listar, ListarId}

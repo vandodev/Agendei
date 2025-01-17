@@ -15,4 +15,9 @@ async function Excluir(id_user, id_appointment) {
     return appointment;
 }
 
-export default {Listar, Inserir, Excluir}
+async function ListarId(id_appointment) {
+    const appointments = await repoAppointment.ListarId(id_appointment);
+    return appointments;
+};
+
+export default {Listar, Inserir, Excluir, ListarId}
