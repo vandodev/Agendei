@@ -1,9 +1,34 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar"
 import { doctors, doctors_services } from "../../constants/data";
+import { useEffect, useState } from "react";
+import api from "../../constants/api.js";
 
 function AppointmentAdd() {
+    const navigate = useNavigate();
     const { id_appointment } = useParams();
+    const [users, setUsers] = useState([]);
+
+    async function LoadUsers() {
+        try {
+            const response = await api.get("/admin/users");
+            if (response.data) {
+                setUsers(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
+            } else {
+                alert("Erro ao listar pacientes.");
+            }
+        }
+    }
+    useEffect(() => {
+        LoadUsers();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -16,6 +41,19 @@ function AppointmentAdd() {
                             }
                         </h2>
                     </div>
+
+                    <div className="col-12 mt-4">
+                        <label htmlFor="user" className="form-label">Paciente</label>
+                        <div className="form-control mb-2">
+                            <select name="user" id="user">
+                                <option value="0">Selecione o paciente</option>
+                                {users.map(u => {
+                                    return <option key={u.id_user} value={u.id_user}>{u.name}</option>
+                                })}
+                            </select>
+                        </div>
+                    </div>
+
                     <div className="col-12 mt-4">
                         <label htmlFor="doctor" className="form-label">Médico</label>
                         <div className="form-control mb-2">
