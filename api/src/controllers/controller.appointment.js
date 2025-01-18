@@ -44,4 +44,11 @@ async function InserirAdmin(req, res) {
     res.status(201).json(appointment);
 }
 
-export default {ListarByUser, Inserir, Excluir, Listar, ListarId, InserirAdmin}
+async function EditarAdmin(req, res) {
+    const id_appointment = req.params.id_appointment;
+    const {id_user, id_doctor, id_service, booking_date, booking_hour} = req.body;
+    const appointment = await serviceAppointment.Editar(id_appointment, id_user, id_doctor, id_service, booking_date, booking_hour);
+    res.status(200).json(appointment);
+}
+
+export default {ListarByUser, Inserir, Excluir, Listar, ListarId, InserirAdmin, EditarAdmin}

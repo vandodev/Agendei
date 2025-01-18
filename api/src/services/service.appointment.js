@@ -20,4 +20,9 @@ async function ListarId(id_appointment) {
     return appointments;
 };
 
-export default {Listar, Inserir, Excluir, ListarId}
+async function Editar(id_appointment, id_user, id_doctor, id_service, booking_date, booking_hour) {
+    const appointment = await repoAppointment.Editar(id_appointment, id_user, id_doctor, id_service, booking_date, booking_hour);
+    return appointment;
+};
+
+export default {Listar, Inserir, Excluir, ListarId, Editar}

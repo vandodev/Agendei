@@ -75,4 +75,10 @@ async function ListarId(id_appointment) {
     return appointments[0];
 };
 
-export default {Listar, Inserir, Excluir, ListarId} ;
+async function Editar(id_appointment, id_user, id_doctor, id_service, booking_date, booking_hour) {
+    let sql = `update appointments set id_user=?, id_doctor=?, id_service=?, booking_date=?, booking_hour=? where id_appointment = ?`;
+    await query(sql, [id_user, id_doctor, id_service, booking_date, booking_hour, id_appointment]);
+    return { id_appointment };
+};
+
+export default {Listar, Inserir, Excluir, ListarId, Editar} ;
