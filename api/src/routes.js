@@ -25,6 +25,7 @@ routes.post("/admin/login", controllerUser.LoginAdmin);
 routes.get("/admin/appointments",jwt.validateToken, controllerAppointment.Listar);
 routes.get("/admin/users",jwt.validateToken, controllerUser.Listar);
 routes.get("/admin/appointments/:id_appointment", jwt.validateToken, controllerAppointment.ListarId);
+routes.post("/admin/appointments/", jwt.validateToken, controllerAppointment.InserirAdmin);
 
 //Apointments
 routes.get("/appointments",jwt.validateToken, controllerAppointment.ListarByUser);
