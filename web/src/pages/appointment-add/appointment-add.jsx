@@ -1,6 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar"
-import { doctors, doctors_services } from "../../constants/data";
+import { doctors_services } from "../../constants/data";
 import { useEffect, useState } from "react";
 import api from "../../constants/api.js";
 
@@ -8,6 +8,7 @@ function AppointmentAdd() {
     const navigate = useNavigate();
     const { id_appointment } = useParams();
     const [users, setUsers] = useState([]);
+    const [doctors, setDoctors] = useState([]);
 
     async function LoadUsers() {
         try {
@@ -25,8 +26,27 @@ function AppointmentAdd() {
             }
         }
     }
+
+    async function LoadDoctors() {
+        try {
+            const response = await api.get("/doctors");
+            if (response.data) {
+                setDoctors(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
+            } else {
+                alert("Erro ao listar médicos.");
+            }
+        }
+    }
+
     useEffect(() => {
         LoadUsers();
+        LoadDoctors();
     }, []);
 
     return (
