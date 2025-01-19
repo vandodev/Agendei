@@ -38,6 +38,9 @@ function AppointmentAdd() {
             const response = await api.get("/doctors");
             if (response.data) {
                 setDoctors(response.data);
+                if(id_appointment > 0) {
+                    LoadAppointment(id_appointment);
+                }
             }
         } catch (error) {
             if (error.response?.data.error) {
@@ -79,7 +82,7 @@ function AppointmentAdd() {
             booking_hour: bookingHour
         };
         try {
-            const response = await api.post("/admin/appointments", json);
+            const response = id_appointment > 0 ? await api.put("/admin/appointments/" + id_appointment, json) : await api.post("/admin/appointments", json);
             if (response.data) {
                 navigate("/appointments");
             }
@@ -93,6 +96,28 @@ function AppointmentAdd() {
             }
         }
     }
+
+    async function LoadAppointment(id) {
+        try {
+            const response = await api.get(`/admin/appointments/${id}`);
+            if (response.data) {
+                setIdUser(response.data.id_user);
+                setIdDoctor(response.data.id_doctor);
+                setIdService(response.data.id_service);
+                setBookingDate(response.data.booking_date);
+                setBookingHour(response.data.booking_hour);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
+            } else {
+                alert("Erro ao listar serviços.");
+            }
+        }
+    }
+
 
     useEffect(() => {
         LoadUsers();
