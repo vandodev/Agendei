@@ -14,6 +14,7 @@ function AppointmentAdd() {
     const [idService, setIdService] = useState("");
     const [bookingDate, setBookingDate] = useState("");
     const [bookingHour, setBookingHour] = useState("");
+    const [services, setServices] = useState([]);
 
     async function LoadUsers() {
         try {
@@ -49,6 +50,26 @@ function AppointmentAdd() {
         }
     }
 
+     async function LoadServices(id) {
+        if(!id) {
+            return;
+        }
+        try {
+            const response = await api.get(`/doctors/${id}/services`);
+            if (response.data) {
+                setServices(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
+            } else {
+                alert("Erro ao listar serviços.");
+            }
+        }
+    }
+
     async function SaveAppointments() {
         const json = {
             id_user: idUser,
@@ -77,6 +98,10 @@ function AppointmentAdd() {
         LoadUsers();
         LoadDoctors();
     }, []);
+
+    useEffect(() => {
+        LoadServices(idDoctor);
+    }, [idDoctor])
 
     return (
         <>
@@ -119,8 +144,8 @@ function AppointmentAdd() {
                         <div className="form-control mb-2">
                         <select name="service" id="service" value={idService} onChange={(e) => setIdService(e.target.value)}>
                                 <option value="0">Selecione o serviço</option>
-                                {doctors_services.map(d => {
-                                    return <option key={d.id_service} value={d.id_service}>{d.description}</option>
+                                {services.map(s => {
+                                    return <option key={s.id_service} value={s.id_service}>{s.description}</option>
                                 })}
                             </select>
                         </div>
