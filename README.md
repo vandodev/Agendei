@@ -50,4 +50,37 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 <img src="https://github.com/user-attachments/assets/7c92d5a2-2cdb-436c-8dda-edc4714cc079" height="270" width="130" />
 </div>
 
+## 🎨 Layout
+
+### Melhorias Mobile
+
+- [ ] Carregar apenas médicos com serviços cadastrados.
+- [ ] Tratamento de login e senha ao não inserir nada.
+- [ ] Salvar dado no localstorange.
+- [ ] Carregamento de dados (loading)
+- [ ] Alerta para exclusão de agendamento.
+- [ ] Validação de campos.
+- [ ] Esqueci minha senha
+
+### Melhorias api
+
+- [ ] Tratamento de login e senha ao não inserir nada.
+- [ ] Mudar retorno da api usuário e senha inválidos.
+- [ ] Alterar modo de rodar o projeto.
+- [ ] Validar consulta no mesmo dia e horário.
+- [ ] Criar rotas para mostrar somente médicos com serviços.
+- [ ] Separar controller service e repositóries de admin
+
+### Melhorias web
+
+- [ ] Fazer tela de médicos.
+- [ ] Validar campos de login.
+- [ ] Carregamento de dados (loading)
+- [ ] Validação de campos ao inserir agendamento.
+- [ ] Buscar horários de agendamento do banco
+- [ ] Esqueci minha senha.
+- [ ] Separar a função que busca médicos (duplicação de código)
+- [ ] Paginação.
+- [ ] Consulta de médicos com alto completar
+
 
