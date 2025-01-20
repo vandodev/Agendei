@@ -3,35 +3,36 @@ import {styles} from "./appointment.style.js";
 import Button from "../button/button.jsx";
 import icon from "../../constants/icon.js"
 
-function Appointment({ service, doctor, specialty, booking_date, booking_hour, onPress, id_appointment}) {
-    const formatDate = (vdata, vhora) => new Date(`${vdata}T${vhora}`).toLocaleDateString('pt-BR');
+function Appointment(props) {
+    // 2024-11-15T08:30:00
+    const dt = new Date(props.bookingDate + "T" + props.bookingHour)
 
     return <View style={styles.appointment}>
 
-        <Text style={styles.title}>{service} - {doctor}</Text>
+        <Text style={styles.title}> {props.service} - {props.doctor}</Text>
 
-        <Text style={styles.text}>{specialty}</Text>
+        <Text style={styles.text}>{props.specialty}</Text>
 
         <View style={styles.container}>
             <View style={styles.containerBooking}>
                 <View style={styles.booking}>
                     <Image style={styles.icon} source={icon.calendar}/>
                     <Text style={styles.bookingDate}>
-                        {formatDate(booking_date, booking_hour)}
+                        {dt.toLocaleDateString()}
                     </Text>
                 </View>
                 <View style={styles.booking}>
                     <Image style={styles.icon} source={icon.clock}/>
-                    <Text style={styles.bookingDate}>{booking_hour}</Text>
+                    <Text style={styles.bookingDate}>{props.bookingHour}h</Text>
                 </View>
             </View>
 
             <View style={styles.containerButton}>
-                <Button 
+            <Button
                     text="Cancelar Reserva"
                     theme="danger"
-                    onPress={() => onPress(id_appointment)} 
-                 />
+                    onPress={() => props.onPress(props.id_appointment)}
+                />
             </View>
         </View>
 

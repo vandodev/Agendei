@@ -55,11 +55,11 @@ async function Inserir(id_user, id_doctor, id_service, booking_date, booking_hou
     return appointment[0];
 }
 
-async function Excluir(id_appointment) {       
-    let sql = `DELETE FROM appointments WHERE id_appointment =? `;
-    await query(sql,[id_appointment ]);
-    return {id_appointment};
-}
+async function Excluir(id_user, id_appointment) {
+    let sql = `delete from appointments where id_appointment =?`;
+    await query(sql, [id_appointment]);
+    return { id_appointment };
+};
 
 async function ListarId(id_appointment) {
     let sql =
