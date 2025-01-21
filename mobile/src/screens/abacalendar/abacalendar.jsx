@@ -4,12 +4,15 @@ import {styles} from "./abacalendar.style.js";
 import Appointment from '../../components/appointment/appointment.jsx';
 import api from '../../constants/api.js';
 import { useFocusEffect } from "@react-navigation/native";
+import Loading from "../../components/loading/loading.jsx";
 
 function AbaCalendar() {
     const [appointments, setAppointments] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     async function loadAppointments() {
         try {
+          setLoading(true);
           const response = await api.get("appointments");
     
           if (response.data) {
@@ -23,6 +26,8 @@ function AbaCalendar() {
           else
             Alert.alert("Ocorreu um erro, tente novamente mais tarde");
           console.log(error);
+        }finally {
+          setLoading(false); // Finaliza o carregamento
         }
     }
 
@@ -49,6 +54,10 @@ function AbaCalendar() {
       }, [])
     );
     
+    if (loading) {
+      return <Loading />;
+    }
+
     return <View style={styles.container}>      
          <FlatList
             data={appointments}
