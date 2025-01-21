@@ -3,10 +3,12 @@ import {FlatList, Alert, Text, View} from 'react-native';
 import {styles} from "./abahome.style.js";
 import Doctor from '../../components/doctor/doctor.jsx';
 import api from "../../constants/api.js";
+import Loading from "../../components/loading/loading.jsx";
 
 function AbaHome(props) {
 
     const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     function handleClick(id_doctor, name, specialty, icon) {
         props.navigation.navigate("services",{
@@ -25,12 +27,18 @@ function AbaHome(props) {
           else
             Alert.alert("Ocorreu um erro, tente novamente mais tarde");
           console.log(error);
+        } finally {
+          setLoading(false); // Finaliza o carregamento
         }
       }
     
       useEffect(() => {
         loadDoctors();
       }, []);
+
+      if (loading) {
+        return <Loading />;
+      }
 
     return <View style={styles.container}>
         <Text style={styles.text}>Agende os seus serviços médicos!</Text>
