@@ -1,7 +1,12 @@
 import repositoryDoctor from "../repositories/repository.doctor.js";
  
- async function Listar(name){
+async function Listar(name){
     const doctors = await repositoryDoctor.Listar(name);    
+    return doctors;
+}
+
+async function ListarDoctorsComServicos(name){
+    const doctors = await repositoryDoctor.ListarDoctorsComServicos(name);    
     return doctors;
 }
 
@@ -25,4 +30,4 @@ async function listarServicos(id_doctor) {
     return serv;
 }
 
-export default {Listar, Inserir, Editar, Excluir, listarServicos};
+export default {Listar, Inserir, Editar, Excluir, listarServicos, ListarDoctorsComServicos};

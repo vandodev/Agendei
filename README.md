@@ -50,7 +50,6 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 <img src="https://github.com/user-attachments/assets/7c92d5a2-2cdb-436c-8dda-edc4714cc079" height="270" width="130" />
 </div>
 
-## 🎨 Layout
 
 ### Melhorias Mobile
 
@@ -64,6 +63,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 
 ### Melhorias api
 
+- [x] Carregar apenas médicos com serviços cadastrados.
 - [ ] Tratamento de login e senha ao não inserir nada.
 - [ ] Mudar retorno da api usuário e senha inválidos.
 - [ ] Alterar modo de rodar o projeto.

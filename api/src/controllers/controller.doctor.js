@@ -6,6 +6,12 @@ import serviceDoctors from "../services/service.doctors.js";
     res.json(doctors);
 }
 
+async function ListarDoctorsComServicos(req, res){
+    const { name } = req.query;
+    const doctors = await serviceDoctors.ListarDoctorsComServicos(name);
+    res.json(doctors);
+}
+
 async function Inserir(req, res) {
     const { name, specialty, icon } = req.body;
     const doctor = await serviceDoctors.Inserir(name, specialty, icon);
@@ -32,4 +38,4 @@ async function ListarServicos(req, res) {
   }
 
 
-export default {Listar, Inserir, Editar, Excluir, ListarServicos}
+export default {Listar, Inserir, Editar, Excluir, ListarServicos, ListarDoctorsComServicos}

@@ -16,6 +16,16 @@ async function Listar(name){
     return doctors;
 }
 
+async function ListarDoctorsComServicos(name){
+    let sql = `SELECT DISTINCT d.* FROM doctors d
+        JOIN doctors_services ds ON d.id_doctor = ds.id_doctor
+        ORDER BY d.name
+    `;
+
+    const doctors = await query(sql, [name])   
+    return doctors;
+}
+
 async function Inserir(name, specialty, icon) {
        
     let sql = `INSERT INTO doctors (name, specialty, icon) VALUES (?, ?, ?)
@@ -59,4 +69,4 @@ async function listarServicos(id_doctor) {
     return serv;
 }
 
-export default {Listar, Inserir, Editar, Exluir, listarServicos} ;
+export default {Listar, Inserir, Editar, Exluir, listarServicos, ListarDoctorsComServicos} ;
