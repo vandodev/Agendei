@@ -16,7 +16,7 @@ function AbaHome(props) {
 
     async function loadDoctors() {
         try {
-          const response = await api.get("doctors");
+          const response = await api.get("doctorsativos");
           setDoctors(response.data);
         }
         catch (error) {

@@ -53,7 +53,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 
 ### Melhorias Mobile
 
-- [ ] Carregar apenas médicos com serviços cadastrados.
+- [x] Carregar apenas médicos com serviços cadastrados.
 - [ ] Tratamento de login e senha ao não inserir nada.
 - [ ] Salvar dado no localstorange.
 - [ ] Carregamento de dados (loading)
