@@ -13,9 +13,20 @@ function Account(props) {
     const [password, setPassword] = useState("");
     const { setUser } = useContext(authContext);
 
+    function isValidEmail(email) {
+        // Expressão regular para validar e-mails
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
     async function handleRegister() {
         if (!name || !email || !password) {
             Alert.alert("Todos os campos são obrigatório para finalizar o cadastro");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            Alert.alert("Por favor, insira um e-mail válido.");
             return;
         }
 

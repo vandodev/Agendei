@@ -59,7 +59,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 - [x] Implementar validação para garantir que os campos de login (e-mail) e senha sejam preenchidos
 - [x] Alerta para exclusão de agendamento.
 - [x] Validação de campos no cadastro.
-- [ ] Validação de email válido.
+- [x] Validação de campo email.
 - [ ] Salvar dado no localstorange.
 - [ ] Esqueci minha senha
 
