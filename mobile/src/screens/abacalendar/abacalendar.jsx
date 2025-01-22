@@ -31,6 +31,17 @@ function AbaCalendar() {
         }
     }
 
+    function confirmDeleteAppointment(id_appointment) {
+      Alert.alert(
+        "Cancelar Agendamento", // Título do alerta
+        "Tem certeza que deseja cancelar este agendamento?", // Mensagem
+        [
+          { text: "Não", style: "cancel" }, // Botão de cancelamento
+          { text: "Sim", onPress: () => deleteAppointment(id_appointment) }, // Botão de confirmação
+        ]
+      );
+    }
+
     async function deleteAppointment(id_appointment) {
       try {
         const response = await api.delete(`/appointments/${id_appointment}`);
@@ -71,7 +82,7 @@ function AbaCalendar() {
                     specialty={item.specialty}
                     bookingDate={item.booking_date}
                     bookingHour={item.booking_hour}                   
-                    onPress={deleteAppointment}
+                    onPress={confirmDeleteAppointment}
                 />
             }}
         />
