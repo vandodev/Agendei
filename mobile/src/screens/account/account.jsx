@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Image, Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Image, Text, TextInput, View, TouchableOpacity, Alert } from "react-native";
 import icon from "../../constants/icon.js"
 import { styles } from "./account.style";
 import Button from "../../components/button/button.jsx"
@@ -14,6 +14,11 @@ function Account(props) {
     const { setUser } = useContext(authContext);
 
     async function handleRegister() {
+        if (!name || !email || !password) {
+            Alert.alert("Todos os campos são obrigatório para finalizar o cadastro");
+            return;
+        }
+
         try {
           const response = await api.post('users/register', {
             name,
@@ -69,7 +74,13 @@ function Account(props) {
                     onChangeText={setPassword} 
                 />
             </View>
-            <Button text="Criar Conta" onPress={handleRegister} />
+
+            <Button 
+                text="Criar Conta" 
+                onPress={handleRegister} 
+                disabled={!name || !email || !password}
+            />
+
         </View>
 
         <View style={styles.footer}>
