@@ -56,7 +56,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 - [x] Carregar apenas médicos com serviços cadastrados.
 - [x] Carregamento de médicos (loading)
 - [x] Carregamento de agendamentos (loading)
-- [ ] Tratamento de login e senha ao não inserir nada.
+- [x] Implementar validação para garantir que os campos de login (e-mail) e senha sejam preenchidos
 - [ ] Salvar dado no localstorange.
 - [ ] Alerta para exclusão de agendamento.
 - [ ] Validação de campos.

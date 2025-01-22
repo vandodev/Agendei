@@ -12,6 +12,12 @@ function Login(props) {
     const { setUser } = useContext(authContext);
 
     async function handleLogin(props) {
+
+        if (!email || !password) {
+          Alert.alert("O campo usuário e senha tem que ser preenchido");
+          return;
+        }
+
         try {
           const response = await api.post('users/login', {
             email,
@@ -62,7 +68,13 @@ function Login(props) {
                     onChangeText={setPassword} 
                 />
             </View>
-            <Button text="Acessar" onPress={handleLogin}/>
+            
+            <Button
+              text="Acessar"
+              onPress={handleLogin}
+              disabled={!email || !password} // Botão desabilitado se e-mail ou senha estiverem vazios
+            />
+
         </View>
 
         <View style={styles.footer}>
