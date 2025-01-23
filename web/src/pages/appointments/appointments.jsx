@@ -6,6 +6,7 @@ import "./appointments.css";
 import api from "../../constants/api.js";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from "../../components/loading/loading.jsx";
 
 function Appointments() {
     const [appointments, setAppointments] = useState([]);
@@ -14,6 +15,8 @@ function Appointments() {
 
     const [dtStart, setDtStart] = useState("");
     const [dtEnd, setDtEnd] = useState("");
+
+    const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -58,6 +61,7 @@ function Appointments() {
 
     async function LoadAppointments() {
         try {
+            setLoading(true); 
             const response = await api.get("admin/appointments", {
                 params: {
                     id_doctor: idDoctor,
@@ -77,6 +81,8 @@ function Appointments() {
             } else {
                 alert("Erro ao fazer login, tente novamente mais tarde!");
             }
+        } finally {
+            setLoading(false); 
         }
     }
 
@@ -105,6 +111,10 @@ function Appointments() {
         LoadAppointments();
         LoadDoctors();
     }, []);
+    
+    // if (loading) {
+    //     return <Loading />;
+    // }
 
     return (
         <div className="container-fluid mt-page">
@@ -148,21 +158,29 @@ function Appointments() {
                         </tr>
                     </thead>
                    <tbody>
-                        
-                        {appointments.map((ap) => {
-                            return <Appointment
-                                key={ap.id_appointment}
-                                id_appointment={ap.id_appointment}
-                                user={ap.user}
-                                doctor={ap.doctor}
-                                service={ap.service}
-                                booking_date={ap.booking_date}
-                                booking_hour={ap.booking_hour}
-                                price={ap.price}
-                                ClickEdit={ClickEdit}
-                                ClickDelete={ClickDelete}
-                            />
-                        })}
+
+                            {loading ? (
+                            <tr>
+                                <td colSpan="6" className="text-center">
+                                    <Loading />
+                                </td>
+                            </tr>
+                            ) : (
+                                appointments.map((ap) => (
+                                    <Appointment
+                                        key={ap.id_appointment}
+                                        id_appointment={ap.id_appointment}
+                                        user={ap.user}
+                                        doctor={ap.doctor}
+                                        service={ap.service}
+                                        booking_date={ap.booking_date}
+                                        booking_hour={ap.booking_hour}
+                                        price={ap.price}
+                                        ClickEdit={ClickEdit}
+                                        ClickDelete={ClickDelete}
+                                    />
+                                ))
+                            )}
                     </tbody>
                 </table>
             </div>
