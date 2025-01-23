@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./login.css";
 import logo from "../../assets/logo.png";
 import fundo from "../../assets/fundo.png";
 import { Link, useNavigate} from "react-router-dom";
 import api from "../../constants/api.js";
+import { AuthContext } from "../../contexts/auth.jsx";
 
 function Login() {
 
@@ -12,6 +13,8 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [msg, setMsg] = useState("");
+
+    const { setUser } = useContext(AuthContext);
     
     async function ExecuteLogin() {
         setMsg("");
@@ -29,12 +32,20 @@ function Login() {
             });
             
             if (response.data) {
+                const { token, id_admin, name } = response.data;
+
                 localStorage.setItem("sessionToken", response.data.token);
                 localStorage.setItem("sessionId", response.data.id_admin);
                 localStorage.setItem("sessionEmail", response.data.email);
                 localStorage.setItem("sessionName", response.data.name);
-                api.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
-                console.log(response.data)
+                
+                // Define o token para futuras requisições
+                api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+                  // Atualiza o estado global do contexto
+                  setUser({ id: id_admin, email, name });
+
+                  // Redireciona para a página de agendamentos
                 navigate("/appointments");
             } else {
                 setMsg("Erro ao fazer login, usuário ou senha inválido!");

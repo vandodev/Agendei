@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Navbar from "../../components/navbar/navbar";
 import { Link, useNavigate } from "react-router-dom";
 import Appointment from "../../components/appointment/appointment";
@@ -7,8 +7,11 @@ import api from "../../constants/api.js";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Loading from "../../components/loading/loading.jsx";
+import { AuthContext } from "../../contexts/auth.jsx";
+
 
 function Appointments() {
+    const { user, setUser, logout } = useContext(AuthContext);
     const [appointments, setAppointments] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [idDoctor, setIdDoctor] = useState("");
@@ -67,7 +70,10 @@ function Appointments() {
                     id_doctor: idDoctor,
                     dt_start: dtStart,
                     dt_end: dtEnd
-                }
+                },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("sessionToken")}`, // Token no cabeçalho
+                },
             });
         
             if (response.data) {
@@ -108,14 +114,28 @@ function Appointments() {
     }
 
     useEffect(() => {
-        LoadAppointments();
-        LoadDoctors();
-    }, []);
+        if (!user) {
+            // Caso o `user` esteja vazio, tenta restaurar a autenticação do localStorage
+            const token = localStorage.getItem("sessionToken");
+            const email = localStorage.getItem("sessionEmail");
+            const id = localStorage.getItem("sessionId");
+            const name = localStorage.getItem("sessionName");
     
-    // if (loading) {
-    //     return <Loading />;
-    // }
-
+            if (token && id && email) {
+                // Atualiza o estado do usuário no contexto
+                setUser({ id, email, name });
+                api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            } else {
+                // Redireciona para o login caso não tenha dados no localStorage
+                navigate("/");
+            }
+        } else {
+            // Carrega os dados de agendamentos e médicos
+            LoadAppointments();
+            LoadDoctors();
+        }
+    }, [user, navigate]);
+    
     return (
         <div className="container-fluid mt-page">
             <Navbar />
