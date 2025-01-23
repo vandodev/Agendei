@@ -15,6 +15,13 @@ function Login() {
     
     async function ExecuteLogin() {
         setMsg("");
+
+         // Validação para campos em branco
+         if (!email.trim() || !password.trim()) {
+            setMsg("E-mail e senha são obrigatórios!");
+            return;
+        }
+        
         try {
             const response = await api.post("admin/login", {
                 email,

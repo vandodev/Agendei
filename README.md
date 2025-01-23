@@ -75,9 +75,9 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 
 ### Melhorias web
 
-- [ ] Fazer tela de médicos.
-- [ ] Validar campos de login.
+- [x] Validar campos de login.
 - [ ] Carregamento de dados (loading)
+- [ ] Fazer tela de médicos.
 - [ ] Validação de campos ao inserir agendamento.
 - [ ] Buscar horários de agendamento do banco
 - [ ] Esqueci minha senha.
