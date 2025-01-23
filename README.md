@@ -66,8 +66,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 ### Melhorias api
 
 - [x] Carregar apenas médicos com serviços cadastrados.
-- [ ] Tratamento de login e senha ao não inserir nada.
-- [ ] Mudar retorno da api usuário e senha inválidos.
+- [x] Implementar validação para garantir que os campos de login (e-mail) e senha sejam preenchidos
 - [ ] Alterar modo de rodar o projeto.
 - [ ] Validar consulta no mesmo dia e horário.
 - [ ] Criar rotas para mostrar somente médicos com serviços.

@@ -11,24 +11,44 @@ async function Inserir(name, email, password) {
 
 async function Login(email, password) {
     
+    // Validação inicial das entradas
+    if (!email || !password) {
+        return {
+            success: false,
+            message: "E-mail e senha são obrigatórios.",
+        };
+    }
+
     // Obtém o usuário pelo email
     const user = await repositoryUser.getByEmail(email);
 
-    // Verifica se o usuário é nulo, indefinido ou vazio
-    if (!user || user.length === 0) {
-        return []; // Retorna um array vazio se o usuário não for encontrado
+   // Verifica se o usuário foi encontrado
+   if (!user) {
+        return {
+            success: false,
+            message: "Usuário não encontrado.",
+        };
     }
 
-    else{
-        if(await bcrypt.compare(password, user.password)){
-            delete user.password;
-            user.token = jwt.createToken(user.id_user);
-            return user;
-        }
-        else {
-            return[];
-        }
+    // Verifica se a senha está correta
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return {
+            success: false,
+            message: "E-mail ou senha inválidos.",
+        };
     }
+
+    // Gera o token JWT
+    const token = jwt.createToken(user.id_user);
+
+    // Retorna os dados do usuário sem a senha
+    return {
+        id_user: user.id_user,
+        name: user.name,
+        email: user.email,
+        token: token,
+    }; 
 }
 
 async function Profile(id_user){
