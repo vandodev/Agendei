@@ -35,7 +35,7 @@ function AppointmentAdd() {
 
     async function LoadDoctors() {
         try {
-            const response = await api.get("/doctors");
+            const response = await api.get("/doctorsativos");
             if (response.data) {
                 setDoctors(response.data);
                 if(id_appointment > 0) {
@@ -95,7 +95,7 @@ function AppointmentAdd() {
             alert("Por favor, selecione um horário.");
             return;
         }
-        
+
         const json = {
             id_user: idUser,
             id_doctor: idDoctor,
