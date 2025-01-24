@@ -74,6 +74,28 @@ function AppointmentAdd() {
     }
 
     async function SaveAppointments() {
+
+        if (!idUser || idUser === "0") {
+            alert("Por favor, selecione um paciente.");
+            return;
+        }
+        if (!idDoctor || idDoctor === "0") {
+            alert("Por favor, selecione um médico.");
+            return;
+        }
+        if (!idService || idService === "0") {
+            alert("Por favor, selecione um serviço.");
+            return;
+        }
+        if (!bookingDate) {
+            alert("Por favor, selecione uma data.");
+            return;
+        }
+        if (!bookingHour || bookingHour === "0") {
+            alert("Por favor, selecione um horário.");
+            return;
+        }
+        
         const json = {
             id_user: idUser,
             id_doctor: idDoctor,
