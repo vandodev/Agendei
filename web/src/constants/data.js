@@ -3,54 +3,63 @@ export const doctors = [
         id_doctor: 1,
         name: "Dr. Armando Matheus",
         specialty: "Ginecologia e obstetrícia",
+        telephone: "16999999999",
         icon: "M"
     },
     {
         id_doctor: 2,
         name: "Dra. Ana Beatriz Rutini",
         specialty: "Cardiologista",
+        telephone: "16999999999",
         icon: "F"
     },
     {
         id_doctor: 3,
         name: "Dr. Antônio Almeida Souza ",
         specialty: "Pediatria",
+        telephone: "16999999999",
         icon: "M"
     },
     {
         id_doctor: 4,
         name: "Dra. Roberta Martins",
         specialty: "Clínica Geral",
+        telephone: "16999999999",
         icon: "F"
     },
     {
         id_doctor: 5,
         name: "Dra. Nise da Silveira",
         specialty: "Cirurgia Plástica",
+        telephone: "16999999999",
         icon: "F"
     },
     {
         id_doctor: 6,
         name: "Dr. Jonatan Silvestre",
         specialty: "Pediatria",
+        telephone: "16999999999",
         icon: "M"
     },
     {
         id_doctor: 7,
         name: "Dr. José Eduardo Souza",
         specialty: "Clínica Geral",
+        telephone: "16999999999",
         icon: "M"
     },
     {
         id_doctor: 8,
         name: "Dra. Adriana Melo",
         specialty: "Clínica Geral",
+        telephone: "16999999999",
         icon: "F"
     },
     {
         id_doctor: 9,
         name: "Dra. Valeria Petri",
         specialty: "Cirurgia Plástica",
+        telephone: "16999999999",
         icon: "F"
     }
 ];
