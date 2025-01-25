@@ -1,11 +1,32 @@
+import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import "./doctors.css";
-import { doctors, appointments } from "../../constants/data";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Doctor from "../../components/doctor/doctor";
+import api from "../../constants/api.js";
 
 
 function Doctors() {
+    const [doctors, setDoctors] = useState([]);
+
+    async function LoadDoctors() {
+        try {
+            const response = await api.get("doctors");
+            if (response.data) {
+                setDoctors(response.data);
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                alert(error.response?.data.error);
+            } else {
+                alert("Erro ao fazer login, tente novamente mais tarde!");
+            }
+        }
+    }
+    useEffect(() => {
+        LoadDoctors();
+    }, []);
+
     return (      
         <div className="container-fluid mt-page">
             <Navbar />
