@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/navbar";
 import "./doctors.css";
-import { Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { confirmAlert } from "react-confirm-alert";
 import Doctor from "../../components/doctor/doctor";
 import api from "../../constants/api.js";
 
 
 function Doctors() {
     const [doctors, setDoctors] = useState([]);
+    const navigate = useNavigate();
 
     async function LoadDoctors() {
         try {
@@ -23,6 +26,42 @@ function Doctors() {
             }
         }
     }
+
+    function ClickDelete(id_doctor) {
+        confirmAlert({
+            title: "Exclusão",
+            message: "Confirma exclusão desse médico?",
+            buttons: [
+                {
+                    label: "Sim",
+                    onClick: () => DeleteDoctor(id_doctor)
+                },
+                {
+                    label: "Não",
+                    onClick: () => {}
+                }                
+            ]
+        });
+    }
+
+    async function DeleteDoctor(id) {
+        try {
+            const response = await api.delete("/doctors/" + id);
+            if (response.data) {
+                LoadDoctors();
+            }
+        } catch (error) {
+            if (error.response?.data.error) {
+                if (error.response.status === 401) {
+                    return navigate("/");
+                }
+                alert(error.response?.data.error);
+            } else {
+                alert("Erro ao excluir dados");
+            }
+        }
+    }
+
     useEffect(() => {
         LoadDoctors();
     }, []);
@@ -62,6 +101,7 @@ function Doctors() {
                                     specialty={dt.specialty}
                                     telephone={dt.telephone}
                                     icon={dt.icon}
+                                    ClickDelete={ClickDelete}
                                 />
                             })}
                         </tbody>
