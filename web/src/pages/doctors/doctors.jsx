@@ -72,7 +72,7 @@ function Doctors() {
             <div className="d-flex justify-content-between align-items-center">
                     <div>
                         <h2 className="d-inline">Médicos</h2>
-                        <Link to="#" className="mb-2 btn btn-outline-primary ms-5">
+                        <Link to="/doctors/add" className="mb-2 btn btn-outline-primary ms-5">
                             Novo médico
                         </Link>
                     </div>

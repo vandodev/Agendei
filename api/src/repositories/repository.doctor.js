@@ -28,7 +28,7 @@ async function ListarDoctorsComServicos(name){
 
 async function Inserir(name, specialty, telephone, icon) {
        
-    let sql = `INSERT INTO doctors (name, specialty,telephone, icon) VALUES (?, ?, ?, ?)
+    let sql = `INSERT INTO doctors (name, specialty, telephone, icon) VALUES (?, ?, ?, ?)
       returning id_doctor` 
     ;
 
@@ -44,7 +44,7 @@ async function Editar(id_doctor, name, specialty, telephone, icon) {
         WHERE id_doctor = ?
     `;
 
-    await query(sql, [name, specialty, icon, telephone, id_doctor]); 
+    await query(sql, [name, specialty, telephone, icon,  id_doctor]); 
     
     
     return { id_doctor };
