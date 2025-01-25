@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Navbar from "../../components/navbar/navbar";
 import "./doctors.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,10 +6,11 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { confirmAlert } from "react-confirm-alert";
 import Doctor from "../../components/doctor/doctor";
 import api from "../../constants/api.js";
-
+import { AuthContext } from "../../contexts/auth.jsx";
 
 function Doctors() {
     const [doctors, setDoctors] = useState([]);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function LoadDoctors() {
@@ -63,8 +64,21 @@ function Doctors() {
     }
 
     useEffect(() => {
-        LoadDoctors();
-    }, []);
+        if (!user) {
+            // Caso o `user` esteja vazio, tenta restaurar a autenticação do localStorage
+            const token = localStorage.getItem("sessionToken");
+            if (token) {
+                // Atualiza o estado do usuário no contexto
+                api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+            } else {
+                // Redireciona para o login caso não tenha dados no localStorage
+                navigate("/");
+            }
+        } else {
+            // Carrega os dados de agendamentos e médicos
+            LoadDoctors();
+        }
+    }, [user, navigate]);
 
     return (      
         <div className="container-fluid mt-page">

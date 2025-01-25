@@ -1,5 +1,4 @@
 function Doctor(props) {
-    const dt = new Date(props.booking_date + "T" + props.booking_hour);
     return (
         <tr>
             <td >{props.id_doctor}</td>
@@ -10,7 +9,7 @@ function Doctor(props) {
             <td className="text-end">
                 <div className="d-inline me-3">
                     <button onClick={() => props.ClickEdit(props.id_doctor)} className="btn btn-sm btn-primary">
-                        <i class="bi bi-pencil-square"></i>
+                        <i className="bi bi-pencil-square"></i>
                     </button>
                 </div>
                 <button  onClick={() => props.ClickDelete(props.id_doctor)} className="btn btn-sm btn-danger">
