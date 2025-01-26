@@ -1,8 +1,14 @@
 import serviceDoctors from "../services/service.doctors.js";
 
- async function Listar(req, res){
+async function Listar(req, res){
     const { name } = req.query;
     const doctors = await serviceDoctors.Listar(name);
+    res.json(doctors);
+}
+
+async function ListarDoctorById(req, res){
+    const { id_doctor } = req.params;
+    const doctors = await serviceDoctors.ListarDoctorById(id_doctor);
     res.json(doctors);
 }
 
@@ -38,4 +44,4 @@ async function ListarServicos(req, res) {
   }
 
 
-export default {Listar, Inserir, Editar, Excluir, ListarServicos, ListarDoctorsComServicos}
+export default {Listar, Inserir, Editar, Excluir, ListarServicos, ListarDoctorsComServicos, ListarDoctorById}

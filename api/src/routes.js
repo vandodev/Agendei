@@ -8,6 +8,7 @@ const routes = Router();
 
 //Doctors
 routes.get("/doctors", jwt.validateToken, controllerDoctor.Listar);
+routes.get("/doctors/:id_doctor",jwt.validateToken, controllerDoctor.ListarDoctorById);
 routes.get("/doctorsativos", jwt.validateToken, controllerDoctor.ListarDoctorsComServicos);
 routes.post("/doctors",jwt.validateToken, controllerDoctor.Inserir);
 routes.put("/doctors/:id_doctor",jwt.validateToken, controllerDoctor.Editar);

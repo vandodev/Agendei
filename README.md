@@ -70,6 +70,7 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 - [x] Implementar validação para garantir que os campos de login (e-mail) e senha sejam preenchidos
 - [x] Alterar modo de rodar o projeto.
 - [ ] Validar consulta no mesmo dia e horário.
+- [x] Listar médicos pelo id.
 - [x] Criar rotas para mostrar somente médicos com serviços.
 - [ ] Separar controller service e repositóries de admin
 

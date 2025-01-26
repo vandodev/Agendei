@@ -26,6 +26,15 @@ async function ListarDoctorsComServicos(name){
     return doctors;
 }
 
+async function ListarDoctorById(id_doctor){
+    let sql = `SELECT * FROM doctors WHERE id_doctor = ? 
+        ORDER BY name`
+    ;
+
+    const doctors = await query(sql, [id_doctor])   
+    return doctors[0];
+}
+
 async function Inserir(name, specialty, telephone, icon) {
        
     let sql = `INSERT INTO doctors (name, specialty, telephone, icon) VALUES (?, ?, ?, ?)
@@ -69,7 +78,7 @@ async function listarServicos(id_doctor) {
     return serv;
 }
 
-export default {Listar, Inserir, Editar, Exluir, listarServicos, ListarDoctorsComServicos} ;
+export default {Listar, Inserir, Editar, Exluir, listarServicos, ListarDoctorsComServicos, ListarDoctorById} ;
 
 // ALTER TABLE doctors ADD COLUMN telephone TEXT;
 // UPDATE doctors SET telephone = '1699' || CAST(ABS(RANDOM() % 9000000 + 1000000) AS TEXT);

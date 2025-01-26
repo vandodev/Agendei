@@ -115,6 +115,7 @@ function Doctors() {
                                     specialty={dt.specialty}
                                     telephone={dt.telephone}
                                     icon={dt.icon}
+                                    ClickEdit={ClickEdit}
                                     ClickDelete={ClickDelete}
                                 />
                             })}
