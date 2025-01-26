@@ -15,7 +15,7 @@ async function ListarDoctorsComServicos(name){
     return doctors;
 }
 
-async function Inserir(name, specialty,telephone, icon) {
+async function Inserir(name, specialty, telephone, icon) {
     const doctor = await repositoryDoctor.Inserir(name, specialty, telephone, icon);
     return doctor;
 }

@@ -22,6 +22,7 @@ function Rotas() {
 
             <Route path="/doctors" element={<Doctors/>} />
             <Route path="/doctors/add" element={<DoctorstAdd />} />
+            <Route path="/doctors/edit/:id_doctor" element={<DoctorstAdd />} />
         </Routes>
         
     )

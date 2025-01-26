@@ -28,6 +28,10 @@ function Doctors() {
         }
     }
 
+    function ClickEdit(id_doctor) {
+        navigate("/doctors/edit/" + id_doctor);
+    }
+
     function ClickDelete(id_doctor) {
         confirmAlert({
             title: "Exclusão",

@@ -26,7 +26,7 @@ async function Inserir(req, res) {
 
 async function Editar(req, res) {
     const { id_doctor } = req.params;
-    const { name, specialty, icon } = req.body;
+    const { name, specialty, telephone, icon } = req.body;
     const doctor = await serviceDoctors.Editar(id_doctor, name, specialty, telephone, icon);
     res.status(201).json(doctor);
 }

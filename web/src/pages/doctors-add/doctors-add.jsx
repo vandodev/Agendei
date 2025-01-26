@@ -5,6 +5,7 @@ import api from "../../constants/api.js";
 
 function DoctorsAdd() {
     const navigate = useNavigate();
+    const { id_doctor } = useParams();
 
     const [name, setName] = useState("");
     const [specialty, setSpecialty] = useState("");
@@ -14,13 +15,20 @@ function DoctorsAdd() {
 
     async function SaveDoctors() {
         setMsg("");
-        try {
-            const response = await api.post("/doctors", {
-                name,
-                specialty,
-                telephone,
-                icon
-            });
+
+        const json = {
+            name,
+            specialty,
+            telephone,
+            icon
+        }
+
+        try {            
+            
+            const response = id_doctor > 0 ? 
+            await api.put("/doctors/" + id_doctor, json) : 
+            await api.post("/doctors", json);
+
             if (response.data) {
                 api.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
                 navigate("/doctors");
@@ -36,14 +44,40 @@ function DoctorsAdd() {
         }
     }
 
+    async function LoadDoctorsById(id_doctor) {
+        try {
+            const response = await api.get(`/doctors/${id_doctor}`);
+            if (response.data) {
+                setName(response.data.name);
+                setSpecialty(response.data.specialty);
+                setTelephone(response.data.telephone);
+                setIcon(response.data.icon);
+            }
+            console.log("Retorno da api", response.data.name)
+        } catch (error) {
+            if (error.response?.data.error) {
+                alert(error.response?.data.error);
+            } else {
+                alert("Erro ao Buscar médico, tente novamente mais tarde!");
+            }
+        }
+    }
+
+    useEffect(() => {
+        LoadDoctorsById(id_doctor);
+    }, []);
+
     return (
         <>
             <Navbar />
             <div className="container-fluid mt-page">
                 <div className="row col-lg-4 offset-lg-4">
-                    <div className="col-12 mt-2">                        
-                        <h2>Novo médico</h2>
-                    </div>
+                
+                    <h2>
+                        {
+                            id_doctor > 0 ? "Editar Médico" : "Novo Médico"
+                        }
+                    </h2>
 
                     <div className="col-12 mt-4">
                         <label htmlFor="user" className="form-label">Nome do médico</label>
@@ -51,6 +85,7 @@ function DoctorsAdd() {
                         <input
                             type="text"
                             placeholder="Nome"
+                            value={name}
                             className="form-control"
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -62,6 +97,7 @@ function DoctorsAdd() {
                         
                         <input
                             type="text"
+                            value={specialty}
                             placeholder="Especialidade"
                             className="form-control"
                             onChange={(e) => setSpecialty(e.target.value)}
@@ -74,6 +110,7 @@ function DoctorsAdd() {
                         <label  className="form-label">Telefone</label>
                             <input
                                 type="text"
+                                value={telephone}
                                 placeholder="Telefone"
                                 className="form-control"
                                 onChange={(e) => setTelephone(e.target.value)}
@@ -84,6 +121,7 @@ function DoctorsAdd() {
                         <label  className="form-label">Sexo</label>
                             <input
                                 type="text"
+                                value={icon}
                                 placeholder="Insera M ou F"
                                 className="form-control"
                                 onChange={(e) => setIcon(e.target.value)}
