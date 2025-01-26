@@ -41,13 +41,13 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 <h3>Layout na aplicação mobile (clique na imagem para ter uma melhor visualização)</h3>
 
 <div align="center">  
-<img src="https://github.com/user-attachments/assets/817ffd19-2f52-4f90-94cf-4cf8aaf26dc3" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/d560b72c-3d52-45e8-bc0f-e82decc75068" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/ece1307e-2809-40ca-92c1-99756f6e446a" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/abe43b44-f852-4865-ac41-38ea12ad2acf" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/c963857e-27e9-4409-af12-9f4e2f6300ec" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/64c32979-d99e-4fc8-9af8-bdc7c151fa86" height="270" width="130" />
-<img src="https://github.com/user-attachments/assets/7c92d5a2-2cdb-436c-8dda-edc4714cc079" height="270" width="130" />
+<img src="https://github.com/user-attachments/assets/817ffd19-2f52-4f90-94cf-4cf8aaf26dc3" width="130" />
+<img src="https://github.com/user-attachments/assets/d560b72c-3d52-45e8-bc0f-e82decc75068" width="130" />
+<img src="https://github.com/user-attachments/assets/ece1307e-2809-40ca-92c1-99756f6e446a" width="130" />
+<img src="https://github.com/user-attachments/assets/abe43b44-f852-4865-ac41-38ea12ad2acf" width="130" />
+<img src="https://github.com/user-attachments/assets/c963857e-27e9-4409-af12-9f4e2f6300ec" width="130" />
+<img src="https://github.com/user-attachments/assets/64c32979-d99e-4fc8-9af8-bdc7c151fa86" width="130" />
+<img src="https://github.com/user-attachments/assets/7c92d5a2-2cdb-436c-8dda-edc4714cc079" width="130" />
 </div>
 
 
@@ -82,13 +82,17 @@ Descubra o Agendei: o app de agendamento de consultas médicas, sistema fullstac
 - [x] Criar AuthContext
 - [x] Validação de campos ao inserir agendamento.
 - [x] Na tela adicionar agendamento carregar apenas médicos com serviços cadastrados.
-- [ ] Fazer tela de médicos.
+- [x] Fazer tela de médicos.
+- [x] Adicionar mádico
+- [x] Excluir médico
+- [x] Editar médico
 - [ ] Buscar validação de senha do backend
 - [ ] Limpar filtro ao selecionar todos os médicos.
 - [ ] Buscar horários de agendamento do banco
-- [ ] Esqueci minha senha.
 - [ ] Separar a função que busca médicos (duplicação de código)
-- [ ] Paginação.
 - [ ] Consulta de médicos com alto completar
+- [ ] Criar página para adicionar serviços ao médico
+- [ ] Esqueci minha senha.
+- [ ] Paginação.
 
 
